@@ -26,7 +26,7 @@ const Navbar = () => {
             </Link>
           );
         })}
-        <button className='bg-green-400 text-white hover:bg-green-500 duration-150 px-2 py-1 rounded-sm ml-2'>Logout</button>
+        <button className='bg-green-500 text-white hover:bg-green-600 duration-200 px-2 py-1 rounded-sm ml-2'>Logout</button>
       </div>
       
     </header>

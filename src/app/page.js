@@ -17,7 +17,7 @@ export default function Home() {
       </div>
 
       <div>
-        <Image src={hero} width={500} height={500} alt='heroImg' />
+        <Image priority src={hero} width={500} height={500} alt='heroImg' />
       </div>
     </main>
   );
