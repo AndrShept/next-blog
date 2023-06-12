@@ -3,45 +3,14 @@ import Link from 'next/link';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
+import {linksList} from '../../utils/navList.js'
 
-const linksList = [
-  {
-    id: 1,
-    title: 'Home',
-    url: '/',
-  },
-  {
-    id: 2,
-    title: 'Portfolio',
-    url: '/portfolio',
-  },
-  {
-    id: 3,
-    title: 'Blog',
-    url: '/blog',
-  },
-  {
-    id: 4,
-    title: 'About',
-    url: '/about',
-  },
-  {
-    id: 5,
-    title: 'Contact',
-    url: '/contact',
-  },
-  {
-    id: 6,
-    title: 'Dashboard',
-    url: '/dashboard',
-  },
-];
 
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <header className='flex justify-between flex-wrap'>
-      <Link className='font-extrabold hover:text-green-400 transition-all' href='/'>NICELOGO</Link>
+    <header className='flex justify-between flex-wrap items-center text'>
+      <Link className='font-extrabold hover:text-green-400 transition-all md:text-2xl text-lg' href='/'>NICELOGO</Link>
       <div className='flex gap-2 items-center '>
         {linksList.map((link) => {
           const isActive = pathname === link.url;
