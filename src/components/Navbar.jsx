@@ -9,7 +9,7 @@ import {linksList} from '../../utils/navList.js'
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <header className='flex justify-between flex-wrap items-center text'>
+    <header className='flex justify-between flex-wrap items-center text mb-14'>
       <Link className='font-extrabold hover:text-green-400 transition-all md:text-2xl text-lg' href='/'>NICELOGO</Link>
       <div className='flex gap-2 items-center '>
         {linksList.map((link) => {

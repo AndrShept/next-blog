@@ -4,7 +4,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className=' mb-auto mt-10'>
+    <div className=' mb-auto '>
       <div className='relative'>
         <Image
           className='rounded-sm'

@@ -1,12 +1,13 @@
 
 import Link from 'next/link';
 import React from 'react';
+import Layout from './layout';
 
 const Portfolio = () => {
   return (
-    <section>
-      <h1 className=' text-6xl font-bold mb-10'>Our Works</h1>
-      <div>
+   
+      
+      <section>
         <h3 className='font-semibold text-lg mb-4'>Choose a gallery</h3>
         <div>
           <div className='flex gap-8 '>
@@ -22,8 +23,9 @@ const Portfolio = () => {
 
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+     
+   
   );
 };
 export default Portfolio;
