@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className='flex justify-between items-center'>
+    <footer className='flex justify-between items-center mt-10'>
       <span>footer</span>
       <div className='flex gap-3 cursor-pointer ' >
     <Image src='/../public/1.png' alt='facebook' width={25} height={25} className='hover:scale-125 hover:saturate-100 transition-all '/>
