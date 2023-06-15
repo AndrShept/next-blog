@@ -13,7 +13,7 @@ const Contact = () => {
 
       <div className='grid md:grid-cols-2 md:mt-20 mt-10 flex-col justify-center  gap-6 items-center '>
         <div>
-          <Image src={contactImg} height={400} width={400} />
+          <Image src={contactImg} alt='img' height={400} width={400} />
         </div>
 
         <form onSubmit={(e)=> {e.preventDefault()}} action='' className='flex flex-col gap-6  '>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import {linksList} from '../../utils/navList.js'
+import {linksList} from '../utils/navList.js'
 import { ThemeButton } from './ThemeButton.jsx';
 
 
