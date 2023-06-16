@@ -3,7 +3,14 @@ import Link from 'next/link';
 import React from 'react';
 import Layout from './layout';
 
+export const metadata = {
+  title: 'my Portfolio',
+  description: 'go go go',
+};
+
 const Portfolio = () => {
+
+
   return (
    
       

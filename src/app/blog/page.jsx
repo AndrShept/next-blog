@@ -4,9 +4,7 @@ import React from 'react';
 
 export const fetchData = async () => {
   try {
-    const res = await fetch('http://localhost:3000/api/posts', {
-      cache: 'reload',
-    });
+    const res = await fetch('http://localhost:3000/api/posts');
     return res.json();
   } catch (error) {
     console.log(error);
@@ -27,7 +25,7 @@ const Blog = async () => {
               alt='img'
               height={1000}
               width={1000}
-              className='h-full w-full object-cover'
+              className='h-full rounded-lg w-full object-cover'
               src={item.image}
             />
           </Link>

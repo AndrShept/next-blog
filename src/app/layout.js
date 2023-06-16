@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Container from '@/components/Container';
 import { ThemeProvider } from '@/components/ThemeContex';
+import AuthProvider from '@/components/AuthProvider';
+import { ToastProvider } from '@/components/ToastProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -16,13 +18,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
+          <AuthProvider>
         <ThemeProvider>
-          <Container>
-            <Navbar />
-            {children}
-            <Footer />
-          </Container>
+            <Container>
+              <Navbar />
+              <ToastProvider/>
+              {children}
+              <Footer />
+            </Container>
         </ThemeProvider>
+          </AuthProvider>
       </body>
     </html>
   );

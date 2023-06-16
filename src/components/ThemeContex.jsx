@@ -8,6 +8,7 @@ export const ThemeProvider = ({ children }) => {
   const [mode, setMode] = React.useState(false);
   const toggleMode = () => {
     setMode(prev => !prev);
+    
   };
 
   return (

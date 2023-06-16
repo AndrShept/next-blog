@@ -4,7 +4,18 @@ import React from 'react';
 import contactImg from '../../../public/contact.png';
 import { Button } from '@/components/Button';
 
+export const metadata = {
+  title: 'Phone me',
+  description: 'Contact Page',
+};
+
 const Contact = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const name = e.target[0].value
+    const email = e.target[1].value
+    const area = e.target[2].value
+  }
   return (
     <section className='mb-auto md:mt-16  '>
       <h1 className='text-center text-3xl font-bold'>
@@ -16,7 +27,7 @@ const Contact = () => {
           <Image src={contactImg} alt='img' height={400} width={400} />
         </div>
 
-        <form onSubmit={(e)=> {e.preventDefault()}} action='' className='flex flex-col gap-6  '>
+        <form onSubmit={handleSubmit} action='' className='flex flex-col gap-6  '>
           <input
             className=' px-3 py-2 max-w-[400px] bg-gray-500  rounded-sm outline-none text-white  focus:border-gray-800'
             type='text'
@@ -35,7 +46,7 @@ const Contact = () => {
             rows='10'
             placeholder='message'
           ></textarea>
-          <Button text='Send' />
+          <Button type='submit' text='Send' />
         </form>
       </div>
     </section>
