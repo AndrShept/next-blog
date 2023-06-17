@@ -9,7 +9,6 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 
 const Register = () => {
-  const { data, status } = useSession();
   const router = useRouter();
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
@@ -30,7 +29,7 @@ const Register = () => {
           email,
           password,
         }),
-      });
+      })
       console.log(res, 'res');
       if (res.status === 201) {
         router.push('/dashboard/login?success=Account has been created');
@@ -39,7 +38,7 @@ const Register = () => {
       if (res.status === 500) {
         setLoading(false);
 
-        toast.error('Something wrong');
+        toast.error('Email or name already existing');
       }
       // res.status === 201 &&
       //   router.push('/dashboard/login?success=Account has been created')

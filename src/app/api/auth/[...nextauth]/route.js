@@ -31,7 +31,7 @@ const handler = NextAuth({
                   return user
                 }
                 else{
-                  throw new Error('Wrong credentials')
+                  throw new Error('Wrong password')
                   
                 }
               }
@@ -40,17 +40,13 @@ const handler = NextAuth({
               }
               
 
-            } catch (err) {
-              throw new Error(err)
+            } catch (error) {
+              throw new Error(error)
             }
             
           }
         })
   ],
-  pages: {
-    error: '/dashboard/login'
-
-  },
 
 
 

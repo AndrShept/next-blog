@@ -11,20 +11,32 @@ import { redirect, useRouter } from 'next/navigation';
 import { Spinner } from '@/components/Spinner';
 
 const Login = () => {
-  const { status } = useSession();
+  const {data, status } = useSession();
+  console.log(data?.user?.name)
 
   if (status === 'authenticated') {
-    return redirect('/')
+    return redirect('/');
   }
-
+  if (status === 'loading') {
+    return <Spinner size={10}/>
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const test = e.target
+    const test = e.target;
     const email = e.target[0].value;
     const password = e.target[1].value;
-    signIn('credentials', { email, password });
-    console.log(test)
+    signIn('credentials', { email, password, redirect: false }).then(
+      (callback) => {
+        if (callback.error) {
+          toast.error('Wrong login or password');
+        }
+        if (!callback.error) {
+          toast.success('Enter Success!');
+        }
+      }
+    );
+    console.log(test);
   };
 
   return (
@@ -73,7 +85,7 @@ const Login = () => {
             </div>
 
             <div>
-              <button 
+              <button
                 disabled={status === 'loading'}
                 className='mt-16 disabled:bg-opacity-50 flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm  leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >
@@ -82,7 +94,6 @@ const Login = () => {
 
               <span className='flex  justify-center my-2'>- OR -</span>
               <Link
-              
                 href='dashboard/register'
                 className='flex w-full justify-center rounded-md bg-green-700 px-3 py-1.5 text-sm  leading-6 text-white shadow-sm hover:bg-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
               >

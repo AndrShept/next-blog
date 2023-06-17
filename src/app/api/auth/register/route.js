@@ -13,7 +13,7 @@ export const POST = async (request) => {
     email,
     password: hashedPassword
   });
-  
+
   try {
     await newUser.save()
     return new NextResponse('User has been created',{
