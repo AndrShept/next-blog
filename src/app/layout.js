@@ -3,7 +3,7 @@ import './globals.scss';
 import { Inter } from 'next/font/google';
 import Footer from '@/components/Footer';
 import Container from '@/components/Container';
-import { ThemeProvider } from '@/components/ThemeContex';
+import { ThemeProvider } from '@/components/ThemeContext';
 import AuthProvider from '@/components/AuthProvider';
 import { ToastProvider } from '@/components/ToastProvider';
 
@@ -18,16 +18,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body className={inter.className}>
-          <AuthProvider>
-        <ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider>
             <Container>
               <Navbar />
-              <ToastProvider/>
+              <ToastProvider />
               {children}
               <Footer />
             </Container>
-        </ThemeProvider>
-          </AuthProvider>
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 import React, {  useContext } from 'react';
-import { ThemeContext } from './ThemeContex';
+import { ThemeContext } from './ThemeContext';
 import clsx from 'clsx';
 
 

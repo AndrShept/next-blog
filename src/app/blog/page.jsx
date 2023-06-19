@@ -16,7 +16,10 @@ const Blog = async () => {
   return (
     <section className='m-auto'>
       {data.map((item) => (
-        <div key={item._id} className='md:flex-row flex items-center md:items-start gap-8 mb-14 flex-col '>
+        <div
+          key={item._id}
+          className='md:flex-row flex items-center md:items-start gap-8 mb-14 flex-col '
+        >
           <Link
             className={`border-2 rounded-lg border-[#bbb] h-[250px] w-[400px]`}
             href={`blog/${item._id}`}
@@ -29,7 +32,7 @@ const Blog = async () => {
               src={item.image}
             />
           </Link>
-          <div >
+          <div>
             <h1 className='text-4xl font-bold break-all'>{item.title}</h1>
             <p className='break-all'>{item.content}</p>
           </div>

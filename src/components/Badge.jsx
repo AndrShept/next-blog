@@ -12,7 +12,7 @@ export const Badge = ({size, data, className}) => {
         width={size}
         src={data?.user.image}
       />   :
-      <div className='cursor-pointer ml-2 bg-gray-400 rounded-full w-10 h-10 uppercase text-white flex items-center justify-center'>
+      <div className='cursor-pointer ml-2 bg-gray-400 rounded-full w-8 h-8 uppercase text-white flex items-center justify-center'>
           <span>{data.user.name[0]}</span>
       </div>
     

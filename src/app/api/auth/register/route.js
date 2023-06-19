@@ -11,21 +11,17 @@ export const POST = async (request) => {
   const newUser = new User({
     name,
     email,
-    password: hashedPassword
+    password: hashedPassword,
   });
 
   try {
-    await newUser.save()
-    return new NextResponse('User has been created',{
-        status: 201
-    })
+    await newUser.save();
+    return new NextResponse('User has been created', {
+      status: 201,
+    });
   } catch (error) {
-   
-    return new NextResponse(error.message,{
-        status: 500
-        
-    })
+    return new NextResponse(error.message, {
+      status: 500,
+    });
   }
-
-
 };
