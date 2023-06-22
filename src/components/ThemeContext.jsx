@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children }) => {
   return (
     <ThemeContext.Provider  value={{ mode, toggleMode }}>
         <div className={clsx('bg-[#111] text-[#bbb] opacity-100 duration-1000', {
-            'bg-white text-[#000000]': mode
+            'bg-white text-black': mode
         })}>
       {children}
       </div>

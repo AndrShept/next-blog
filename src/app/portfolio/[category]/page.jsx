@@ -12,7 +12,7 @@ const Category = ({ params }) => {
           <div className='flex flex-col gap-8'>
             <h2 className='text-xl font-semibold'>{item.title}</h2>
             <p>{item.desc}</p>
-            <Button text='See More' />
+            <Button className='w-max' text='See More' />
           </div>
           <div>
             <Image

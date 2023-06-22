@@ -10,15 +10,15 @@ export const fetchData = async (id) => {
   }
 };
 
-export const generateMetadata = async ({params})=> {
-  const post = await fetchData(params.id);
+export const generateMetadata = async ({params: {id}})=> {
+  const post = await fetchData(id);
    return {
     title: post.title,
     description: post.content,
   };
 }
-const BlogPost = async ({ params }) => {
-  const data = await fetchData(params.id);
+const BlogPost = async ({ params : {id} }) => {
+  const data = await fetchData(id);
 
   return (
     <section>

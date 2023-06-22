@@ -1,19 +1,100 @@
 'use client';
+import React from 'react';
+import { CreateForm } from '@/components/CreateForm';
+import { Spinner } from '@/components/Spinner';
 import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import { redirect } from 'next/navigation';
+import { toast } from 'react-hot-toast';
 import useSWR from 'swr';
+import { Button } from '@/components/Button';
 
 const fetcher = (...args) => fetch(args).then((res) => res.json());
 
 const Dashboard = () => {
-
-  const session = useSession()
-  const { data, error, isLoading, } = useSWR(
-    'https://jsonplaceholder.typicode.com/posts/',
+  const [isShow, setIsShow] = React.useState(false);
+  const session = useSession();
+  const { data, error, isLoading, mutate } = useSWR(
+    `/api/posts?username=${session.data?.user.name}`,
     fetcher
   );
+  const handleDelete = async (id) => {
+    try {
+      const ok = confirm('Дійсно хочете видалити цей пост??');
 
-  if (isLoading) return <p className='m-auto'> Loading... </p>
-  if (error) return <div>ошибка загрузки</div>
-  return <div>Dashboard</div>;
+      if (ok) {
+        await fetch(`/api/posts/` + id, {
+          method: 'DELETE',
+        });
+        mutate();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+   
+    e.preventDefault();
+    const title = e.target[0].value;
+    const desc = e.target[1].value;
+    const image = e.target[2].value;
+    const content = e.target[3].value;
+
+    try {
+      const res = await fetch('/api/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+          title,
+          desc,
+          image,
+          content,
+          username: session.data.user.name,
+        }),
+      });
+      e.target.reset();
+      console.log(res);
+      if (res.ok) {
+        toast.success('Post Created');
+        mutate();
+      }
+    } catch (error) {}
+  };
+
+  if (session.status === 'unauthenticated') return redirect('dashboard/login');
+  if (error) return <div> data loading error </div>;
+  if (isLoading) return <Spinner size='md' />;
+  return (
+    <div className='relative'>
+            <Button className='mb-4 motion-safe:animate-bounce' onClick={() => setIsShow((prev) => !prev)} text='Create post' />
+     <CreateForm handleSubmit={handleSubmit} setIsShow={setIsShow} isShow={isShow} />
+      {isLoading
+        ? `loading...`
+        : data?.map((post) => (
+            <div key={post._id}>
+              <div>
+                <Image
+                  onLoadingComplete={(image) =>
+                    image.classList.remove('opacity-0')
+                  }
+                  className='transition-opacity opacity-0 duration-[1s]'
+                  height={200}
+                  width={200}
+                  alt='img'
+                  src={post.image}
+                />
+              </div>
+              <h2> {post.title}</h2>
+              <span
+                className='cursor-pointer duration-200 hover:text-red-600'
+                onClick={() => handleDelete(post._id)}
+              >
+                X
+              </span>
+            </div>
+          ))}
+
+    </div>
+  );
 };
 export default Dashboard;
