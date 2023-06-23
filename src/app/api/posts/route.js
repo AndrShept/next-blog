@@ -27,6 +27,6 @@ export const POST = async (req) => {
 
     return new NextResponse('Post has been created', { status: 201 });
   } catch (error) {
-    return new NextResponse('Database ERROR', { status: 500 });
+    return new NextResponse.json({message: 'error', error}, { status: 500 });
   }
 };

@@ -8,8 +8,9 @@ import { redirect } from 'next/navigation';
 import { toast } from 'react-hot-toast';
 import useSWR from 'swr';
 import { Button } from '@/components/Button';
+import Link from 'next/link';
 
-const fetcher = (...args) => fetch(args).then((res) => res.json());
+export const fetcher = (...args) => fetch(args).then((res) => res.json());
 
 const Dashboard = () => {
   const [isShow, setIsShow] = React.useState(false);
@@ -34,7 +35,6 @@ const Dashboard = () => {
   };
 
   const handleSubmit = async (e) => {
-   
     e.preventDefault();
     const title = e.target[0].value;
     const desc = e.target[1].value;
@@ -53,8 +53,8 @@ const Dashboard = () => {
         }),
       });
       e.target.reset();
-      console.log(res);
       if (res.ok) {
+        setIsShow(false)
         toast.success('Post Created');
         mutate();
       }
@@ -65,14 +65,22 @@ const Dashboard = () => {
   if (error) return <div> data loading error </div>;
   if (isLoading) return <Spinner size='md' />;
   return (
-    <div className='relative'>
-            <Button className='mb-4 motion-safe:animate-bounce' onClick={() => setIsShow((prev) => !prev)} text='Create post' />
-     <CreateForm handleSubmit={handleSubmit} setIsShow={setIsShow} isShow={isShow} />
+    <div  className=''>
+      <Button
+        className='mb-4 '
+        onClick={() => setIsShow((prev) => !prev)}
+        text='Create post'
+      />
+{ isShow &&     <CreateForm
+        handleSubmit={handleSubmit}
+        setIsShow={setIsShow}
+        isShow={isShow}
+      />}
       {isLoading
         ? `loading...`
         : data?.map((post) => (
             <div key={post._id}>
-              <div>
+              <Link href={`dashboard/${post._id}`}>
                 <Image
                   onLoadingComplete={(image) =>
                     image.classList.remove('opacity-0')
@@ -83,7 +91,7 @@ const Dashboard = () => {
                   alt='img'
                   src={post.image}
                 />
-              </div>
+              </Link>
               <h2> {post.title}</h2>
               <span
                 className='cursor-pointer duration-200 hover:text-red-600'
@@ -93,7 +101,6 @@ const Dashboard = () => {
               </span>
             </div>
           ))}
-
     </div>
   );
 };
